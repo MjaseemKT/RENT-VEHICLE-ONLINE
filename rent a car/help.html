@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Form Submission</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css\home.css" rel="stylesheet" />
+    <link href="css\damage.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark-50">
+            <div class="container">
+                <div class="w-25 h-25">
+                    <a class="navbar-brand"
+                        href="https://www.instagram.com/foodie_btech?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
+                        <img src="images\logo.png" alt="Logo" width="90" />
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="home.html">Home</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="help.html">Any Help</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="review.html">Feedback</a>
+                        </li>
+                    </ul>
+                </div>
+                <a class="btn btn-white" href="javascript:void(0);" onclick="goBack()">
+                    <<< </a>
+
+                        
+                        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+                            onclick="w3_open()">
+                            <i class="fa fa-bars"></i>
+                        </a>
+            </div>
+        </nav>
+
+        <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large"
+            style="display: none" id="mySidebar">
+            <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close
+            </a>
+            <a href="home.html" onclick="w3_close()" class="w3-bar-item w3-button">Home</a>
+            <a href="contact.html" onclick="w3_close()" class="w3-bar-item w3-button">Contact</a>
+            <a href="help.html" onclick="w3_close()" class="w3-bar-item w3-button">Any Help</a>
+            <a href="review.html" onclick="w3_close()" class="w3-bar-item w3-button">Review</a>
+        </nav>
+    </header>
+ 
+
+</head>
+<body>
+    <h2><u><i>Damage Submit Form</i></u></h2>
+    <form id="damageForm" enctype="multipart/form-data" style="background-color: beige;">
+        <label for="reporter_name">Reporter's Name:</label>
+        <input type="text" id="reporter_name" name="reporter_name" required>
+    
+        <label for="vin">VIN (Vehicle Identification Number):</label>
+        <input type="text" id="vin" name="vin" required>
+    
+        <label for="damage_description">Description of Damage:</label>
+        <textarea id="damage_description" name="damage_description" rows="4" cols="50" required></textarea>
+    
+        <label for="damage_location">Location of Damage:</label>
+        <input type="text" id="damage_location" name="damage_location" required>
+    
+        <div class="row">
+            <div class="col-4">
+                <label for="damage_date">Date and Time:</label>
+                <input type="datetime-local" id="damage_date" name="damage_date" required>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    
+        <label for="damage_severity">Severity of Damage:</label>
+        <select id="damage_severity" name="damage_severity" required>
+            <option value="minor">Minor</option>
+            <option value="moderate">Moderate</option>
+            <option value="severe">Severe</option>
+        </select>
+    
+        <label for="damage_cause">Cause of Damage:</label>
+        <input type="text" id="damage_cause" name="damage_cause" required>
+    
+        <label for="damage_images">Upload Images of Damage:</label>
+        <div class="file-input">
+            <input type="file" id="damage_images" name="damage_images[]" accept="image/*" multiple required>
+            <span class="file-input-label">Choose Files</span>
+        </div><br>
+    
+        <label for="contact_info">Contact Information:</label>
+        <input type="text" id="contact_info" name="contact_info" required>
+    
+        <label for="additional_comments">Additional Comments:</label>
+        <textarea id="additional_comments" name="additional_comments" rows="4" cols="50"></textarea>
+    
+        <div class="button-group">
+            <input type="submit" value="Save">
+            <input type="button" value="Clear" onclick="clearForm()">
+        </div>
+    </form>
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $("#reporter_name").focus();
+        // Get current date and time
+        var now = new Date();
+        // Set maximum date for date picker
+        var maxDate = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2) + 'T' + ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
+    
+        // Set max attribute of the input field
+        document.getElementById('damage_date').setAttribute('max', maxDate);
+    </script> 
+    
+    <script>
+        $(document).ready(function() {
+            $("#damageForm").submit(function(event) {
+                event.preventDefault(); // Prevent form submission
+
+                // Get form data
+                const formData = new FormData(this);
+                const data = {};
+                formData.forEach(function(value, key) {
+                    if (data[key]) {
+                        if (!Array.isArray(data[key])) {
+                            data[key] = [data[key]];
+                        }
+                        data[key].push(value);
+                    } else {
+                        data[key] = value;
+                    }
+                });
+
+                
+                const file = $("#damage_images")[0].files[0];
+                const reader = new FileReader();
+
+                reader.onload = function(event) {
+                    const imageDataBase64 = event.target.result;
+                    // Add image data to the form data object
+                    data["damageImageData"] = imageDataBase64;
+                    // Retrieve existing data from local storage
+                    let storedData = JSON.parse(localStorage.getItem("damageData")) || [];
+                    // Add new data to the existing array
+                    storedData.push(data);
+                    // Save updated data to local storage
+                    localStorage.setItem("damageData", JSON.stringify(storedData));
+                    // Reset form
+                    $("#damageForm")[0].reset();
+                    alert("submitted successfully!");
+                    window.location.href = "home.html";
+                };
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                } else {
+                    
+                    let storedData = JSON.parse(localStorage.getItem("damageData")) || [];
+                    // Add new data to the existing array
+                    storedData.push(data);
+                    // Save updated data to local storage
+                    localStorage.setItem("damageData", JSON.stringify(storedData));
+                   
+                    $("#damageForm")[0].reset();
+                    alert("Form submitted successfully and data saved to local storage!");
+                }
+            });
+        });
+
+        function clearForm() {
+            $("#damageForm")[0].reset();
+            $("#reporter_name").focus();
+        }
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="js\home.js"></script>
+
+
+    
+</body>
+</html>

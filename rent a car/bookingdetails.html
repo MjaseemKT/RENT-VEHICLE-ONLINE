@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Booking Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css\home.css" rel="stylesheet" />
+    <link href="css\admin.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha384-ezZB7iVZRjsNjVdPpN5eZXFmR/2R1ep8T3A4GUCtlU2pC8BDXnSFFxMlwszE+e6L" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
+
+    <style>
+        .btn-primary {
+            background-color: #007bff; /* Blue background color */
+            border-color: #007bff; /* Blue border color */
+            color: #fff; /* White text color */
+        }
+        
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            border-color: #0056b3; /* Darker blue border on hover */
+        }
+    </style>
+
+    
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white-50 border-bottom border-3">
+            <div class="container">
+                <div class="w-25 h-25">
+                    <a class="navbar-brand"
+                        href="https://www.instagram.com/foodie_btech?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><img
+                            src="images\logo.png" alt="Logo" width="90" /></a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="admin.html">ADD VEHICLE</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="bookingdetails.html">Bike BOOKING DETAILS </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="carbookingdetails.html">Car BOOKING DETAILS </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminfeedback.html">FEED BACK</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="damageinfo.html">DAMAGE INFO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="home.html">HOME</a>
+                        </li>
+                    </ul>
+                    <a class="btn btn-white" href="javascript:void(0);" onclick="goBack()">
+                        <<<</a>
+                </div>
+        </nav>
+    </header>
+<div class="bgcolor" style="background-color: rgb(243, 243, 196);">
+    
+<br><br><br>
+
+   
+                <div class="row">
+                    <div class="col" style="background-color: rgb(190, 236, 241)" class="detailsTable">
+                        <h3><i>vehicle Booking Details</i></h3>
+                        <table class="table table-bordered" id="detailsTable"  >
+                            <thead>
+                                <tr>
+                                    <th>SL.No</th>
+                                    <th>ID</th>
+                                    <th>VEHICLE NAME</th>
+                                    <th>PICK UP DATE</th>
+                                    <th>RETURN DATE</th>
+                                    <th>NUMBER OF DAY</th>
+                                    <th>TOTAL PRICE</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody></table>
+                            <button onclick="exportToExcel1()" class="btn btn-dark">Export to Excel</button>
+                        </div></div>
+
+
+
+                        <script>
+                            function exportToExcel1() {
+                                /* Select the table */
+                                var table = document.getElementById("detailsTable");
+                        
+                                /* Clone the table to preserve original */
+                                var clonedTable = table.cloneNode(true);
+                        
+                                /* Remove Edit and Delete columns from cloned table */
+                                var headers = clonedTable.querySelectorAll("th");
+                                headers.forEach(function(header) {
+                                    if (header.textContent.trim() === "Edit" || header.textContent.trim() === "Delete") {
+                                        var index = header.cellIndex;
+                                        clonedTable.querySelectorAll("tr").forEach(function(row) {
+                                            row.deleteCell(index);
+                                        });
+                                    }
+                                });
+                        
+                                /* Convert cloned table to workbook */
+                                var wb = XLSX.utils.table_to_book(clonedTable, {sheet: "VehicleBookingDetails"});
+                        
+                                /* Save the workbook to a file */
+                                XLSX.writeFile(wb, "vehicle_booking_details.xlsx");
+                            }
+                        </script>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+
+                            <br><br><br><br>
+                            <div class="row">
+                                <div class="col" style="background-color: rgb(163, 194, 197)">
+                                    <h3><i>Customer Details</i></h3>
+                                    <table class="table table-bordered" id="contactdetailsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>SL.No</th>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>PHONE NO</th>
+                                                <th>Email </th>
+                                                <th>LICENCE </th>
+                                                <th>Address</th>
+                                                <th>VEHICLE PICK UP LOCATION</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Table body content goes here -->
+                                        </tbody>
+                                    </table>
+                                    <button onclick="exportToExcel()" class="btn btn-dark">Export to Excel</button>
+                                </div>
+                            </div>
+                            
+
+                            <script>
+                                function exportToExcel() {
+                                    
+                                    var table = document.getElementById("contactdetailsTable");
+                            
+                                    /* Clone the table to preserve original */
+                                    var clonedTable = table.cloneNode(true);
+                            
+                                    /* Remove Edit and Delete columns from cloned table */
+                                    var headers = clonedTable.querySelectorAll("th");
+                                    headers.forEach(function(header) {
+                                        if (header.textContent.trim() === "Edit" || header.textContent.trim() === "Delete") {
+                                            var index = header.cellIndex;
+                                            clonedTable.querySelectorAll("tr").forEach(function(row) {
+                                                row.deleteCell(index);
+                                            });
+                                        }
+                                    });
+                            
+                                    /* Convert cloned table to workbook */
+                                    var wb = XLSX.utils.table_to_book(clonedTable, {sheet: "CustomerDetails"});
+                            
+                                    /* Save the workbook to a file */
+                                    XLSX.writeFile(wb, "customer_details.xlsx");
+                                }
+                            </script>
+                            
+                            
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js\bookings.js"></script>
+    <script src="js\home.js"></script>
+</body>
+
+</html>

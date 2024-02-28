@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Normal car </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css\home.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+<style>
+  /* Form styling */
+  #bikeTab {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input[type="date"],
+select {
+    width: calc(100% - 12px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+select {
+    background-color: #fff;
+    color: #333;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23333' d='M7 10l5 5 5-5z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+}
+</style>
+    
+</head>
+
+<body>
+    <header>
+        
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark-50">
+            <div class="container">
+                <div class="w-25 h-25">
+                    <a class="navbar-brand" 
+
+                        href="https://www.instagram.com/foodie_btech?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
+                        <img src="images\logo.png" alt="Logo" width="90" />
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="home.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="help.html">Any Help </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="review.html">Feedback</a>
+                        </li>
+                    </ul>
+                </div>
+                <a class="btn btn-white" href="javascript:void(0);" onclick="goBack()">
+                    <<< </a>
+
+                        <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+                        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+                            onclick="w3_open()">
+                            <i class="fa fa-bars"></i>
+                        </a>
+            </div>
+        </nav>
+
+        <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large "
+            style="display:none" id="mySidebar">
+            <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close
+            </a>
+            <a href="home.html" onclick="w3_close()" class="w3-bar-item w3-button">Home</a>
+            <a href="contact.html" onclick="w3_close()" class="w3-bar-item w3-button">Contact</a>
+            <a href="help.html" onclick="w3_close()" class="w3-bar-item w3-button">Any Help</a>
+            <a href="review.html" onclick="w3_close()" class="w3-bar-item w3-button">Review</a>
+        </nav>
+    </header>
+<div style="background-color: #c1ceb8;">
+
+    <br>
+   
+    
+    <div id="bikeTab">
+        <div class="row">
+            <center>
+                <h2><i>Normal Car Details</i></h2>
+            </center>
+                <div class="col">
+                <form id="bikeRentalForm">
+                    <div class="form-group">
+                        <label for="bikePickupDate">Pick-up Date</label>
+                        <input type="date" id="bikePickupDate" class="form-control pickup-date" required />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="bikeReturnDate">Return Date</label>
+                        <input type="date" id="bikeReturnDate" class="form-control return-date" required />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <div class="border-top  mx-5 my-3"><br>
+  
+    <div  id="carDetailsContainer">
+       
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script>
+       
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get today's date in the format YYYY-MM-DD
+            const today = new Date().toISOString().split('T')[0];
+            
+            // Set default value for pickup date and return date inputs
+            document.getElementById("bikePickupDate").value = today;
+            document.getElementById("bikeReturnDate").value = today;
+    
+            // Set min attribute for pickup date to today
+            document.getElementById("bikePickupDate").setAttribute("min", today);
+            document.getElementById("bikeReturnDate").setAttribute("min", today);
+    
+            // Add event listener to pickup date input to update min attribute of return date input
+            document.getElementById("bikePickupDate").addEventListener("change", function() {
+                const pickupDate = this.value;
+                const returnDateInput = document.getElementById("bikeReturnDate");
+                const returnDate = returnDateInput.value;
+                
+                // Ensure return date is not earlier than pickup date
+                if (returnDate < pickupDate) {
+                   
+                    returnDateInput.value = pickupDate;
+                }
+    
+                // Update min attribute of return date input
+                returnDateInput.setAttribute("min", pickupDate);
+            });
+        });
+    </script>
+
+    <script>
+    $(document).ready(function() {
+        const carDetailsContainer = $("#carDetailsContainer");
+    
+        // Retrieve car details from local storage
+        const storedCars = localStorage.getItem("carsDetails");
+        const carsDetails = JSON.parse(storedCars) || [];
+    
+        // Render car details
+        if (carsDetails.length > 0) {
+            carsDetails.forEach((car, index) => {
+                const carDiv = $("<div>");
+                carDiv.addClass("row mb-5 border border-dark p-3");
+                carDiv.html(`
+                    <div class="col-md-6 border-end border-primary">
+                        <!-- Car Image -->
+                        <img src="${car.image}" alt="Car Image" class="img-fluid mb-3">
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Car Name -->
+                        <h2 class="mb-3" style="color: #be5906;"><i><u>${car.name}</u></i></h2>
+                        <!-- Car Details -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <ul class="list-unstyled"><br>
+                                    <li><i class="fas fa-chair text-success"></i> Seats: ${car.seat}</li><br>
+                                    <li><i class="fas fa-road text-info"></i> Mileage: ${car.mileage}</li><br>
+                                    <li><i class="fas fa-wrench text-primary"></i> Engine Type: ${car.engine}</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-unstyled"><br>
+                                    <li><i class="fas fa-car text-primary"></i> Model: ${car.model}</li><br>
+                                    <li><i class="fas fa-cogs text-warning"></i> Transmission: ${car.transmission}</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-unstyled"><br><br>
+                                    <li><h5><i class="fas fa-rupee-sign text-danger"></i>  ${car.price} <i>only</i></h5></li>
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Choose Car Button -->
+                        <button class="btn btn-primary addCarBtn" data-id="${car.price}" data-name="${car.name}" data-type="${car.type}">Choose Car</button>
+                    </div>
+                `);
+                carDetailsContainer.append(carDiv);
+            });
+        } else {
+            carDetailsContainer.html("<p>No car details found.</p>");
+        }
+    
+        // Event listener for choosing a car
+        $(".addCarBtn").on("click", function() {
+            const carId = Date.now().toString();
+            const carName = $(this).data("name");
+            const carPrice = $(this).data("id");
+            const carType = $(this).data("type");
+    
+            // Retrieve existing bookings from local storage
+            const existingBookings = JSON.parse(localStorage.getItem("carbookingsNew")) || [];
+    
+            // Retrieve pickup and return dates
+            const pickupDate = document.getElementById("bikePickupDate").value;
+            const returnDate = document.getElementById("bikeReturnDate").value;
+    
+            // Calculate number of days
+            const pickupDateTime = new Date(pickupDate).getTime();
+            const returnDateTime = new Date(returnDate).getTime();
+            const numberOfDays = Math.ceil((returnDateTime - pickupDateTime) / (1000 * 3600 * 24));
+    
+            // Check if both pickup and return dates are selected
+            if (!pickupDate || !returnDate) {
+                alert("Please select both pickup and return dates.");
+                return;
+            }
+    
+            // Check if the selected car is already booked for the selected dates
+            const isAvailable = checkSelectedCarAvailability(existingBookings, carName, pickupDate, returnDate);
+    
+            if (!isAvailable) {
+                // Car is not available for the selected dates, show alert
+                alert("Sorry, the car is not available for the selected dates.");
+                return;
+            }
+    
+            // Store selected car, pickup date, return date, price, name, type, and number of days in local storage
+            const bookingData = {
+                id: carId,
+                carName: carName,
+                pickupDate: pickupDate,
+                returnDate: returnDate,
+                price: carPrice,
+                numberOfDays: numberOfDays
+            };
+            existingBookings.push(bookingData);
+            localStorage.setItem("carbookingsNew", JSON.stringify(existingBookings));
+    
+            // Redirect to the next page (customer.html)
+            window.location.href = "carcustomer.html";
+        });
+    });
+    
+    function checkSelectedCarAvailability(existingBookings, selectedCarName, pickupDate, returnDate) {
+    // Convert pickup and return dates to JavaScript Date objects
+    const pickupDateTime = new Date(pickupDate).getTime();
+    const returnDateTime = new Date(returnDate).getTime();
+
+    // Iterate over existing bookings
+    for (const booking of existingBookings) {
+        // Convert booking pickup and return dates to JavaScript Date objects
+        const bookingPickupDateTime = new Date(booking.pickupDate).getTime();
+        const bookingReturnDateTime = new Date(booking.returnDate).getTime();
+
+        // Check if the selected car is already booked for the selected dates
+        if (
+            (pickupDateTime < bookingReturnDateTime || pickupDateTime === bookingReturnDateTime) &&
+            (returnDateTime > bookingPickupDateTime || returnDateTime === bookingPickupDateTime) &&
+            selectedCarName === booking.carName
+        ) {
+            // Overlap found, car is not available
+            return false;
+        }
+    }
+    // No overlap found with any booking, car is available
+    return true;
+}
+
+    
+</script>
+
+
+
+    
+
+   
+
+
+    
+ 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/home.js"></script>
+  
+
+
+</body>
+
+</html>

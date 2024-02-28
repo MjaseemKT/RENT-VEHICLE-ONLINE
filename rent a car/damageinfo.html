@@ -1,0 +1,234 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin damage info</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css\home.css" rel="stylesheet" />
+    <link href="css\admin.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha384-ezZB7iVZRjsNjVdPpN5eZXFmR/2R1ep8T3A4GUCtlU2pC8BDXnSFFxMlwszE+e6L" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
+
+
+    
+    <style>
+   
+  
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        .delete-button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .delete-icon {
+        color: red; /* Change to your desired color */
+    }
+
+    </style>
+
+
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white-50 border-bottom border-3">
+            <div class="container">
+                <div class="w-25 h-25">
+                    <a class="navbar-brand"
+                        href="https://www.instagram.com/foodie_btech?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><img
+                            src="images\logo.png" alt="Logo" width="90" /></a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="admin.html">ADD VEHICLE</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="bookingdetails.html">Bike BOOKING DETAILS </a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link" href="carbookingdetails.html">Car BOOKING DETAILS </a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link" href="adminfeedback.html">FEED BACK</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="damageinfo.html">DAMAGE INFO</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="home.html">HOME</a>
+                            </li>
+                        </ul>
+                    </ul>
+                    <a class="btn btn-white" href="javascript:void(0);" onclick="goBack()">
+                        <<<</a>
+                </div>
+        </nav>
+    </header>
+
+
+
+
+    <div class="bgcolor" style="background-color: rgb(243, 243, 196);">
+        <br><br><BR><BR>
+       
+            <table id="damageTable">
+                <thead>
+                    <tr>
+                        <th>SL.NO</th>
+                        <th>Reporter's Name</th>
+                        <th>VIN</th>
+                        <th>Description</th>
+                        <th>Location</th>
+                        <th>Severity</th>
+                        <th>Date and Time</th>
+                        <th>Cause</th>
+                        <th>Contact Information</th>
+                        <th>Additional Comments</th>
+                        <th>Image</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be dynamically added here -->
+                </tbody>
+            </table>
+            <button id="exportExcelBtn" class="btn btn-dark">Export to Excel</button>
+
+
+ <script>
+    function exportToExcel() {
+        // Select the table
+        var table = document.getElementById("damageTable");
+
+        // Clone the table to preserve the original
+        var clonedTable = table.cloneNode(true);
+
+        // Remove the "Delete" and "Image" columns from the cloned table
+        var headers = clonedTable.querySelectorAll("th");
+        headers.forEach(function(header) {
+            if (header.textContent.trim() === "Delete" || header.textContent.trim() === "Image") {
+                var index = header.cellIndex;
+                clonedTable.querySelectorAll("tr").forEach(function(row) {
+                    row.deleteCell(index);
+                });
+            }
+        });
+
+        // Convert the cloned table to a workbook
+        var wb = XLSX.utils.table_to_book(clonedTable, {sheet: "DamageDetails"});
+
+        // Save the workbook to a file
+        XLSX.writeFile(wb, "damage_details.xlsx");
+    }
+
+    // Attach the exportToExcel function to the button click event
+    document.getElementById("exportExcelBtn").addEventListener("click", exportToExcel);
+</script>
+
+            
+
+
+            
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
+
+   
+            <script>
+            $(document).ready(function () {
+                displayDamageData();
+            });
+            
+            function displayDamageData() {
+                var damageData = JSON.parse(localStorage.getItem('damageData')) || [];
+                var tbody = $('#damageTable tbody');
+            
+                function populateDamageTable() {
+                    tbody.empty();
+                    var currentDate = new Date();
+                    damageData.forEach(function (damage, index) {
+                        var damageDate = new Date(damage.damage_date);
+                        if (damageDate <= currentDate) { // Only display records with past or current dates
+                            var row = $('<tr>');
+                            row.append('<td>' + (index + 1) + '</td>');
+                            row.append('<td>' + damage.reporter_name + '</td>');
+                            row.append('<td>' + damage.vin + '</td>');
+                            row.append('<td>' + damage.damage_description + '</td>');
+                            row.append('<td>' + damage.damage_location + '</td>');
+                            row.append('<td>' + damage.damage_severity + '</td>');
+                            row.append('<td>' + damage.damage_date + '</td>');
+                            row.append('<td>' + damage.damage_cause + '</td>');
+                            row.append('<td>' + damage.contact_info + '</td>');
+                            row.append('<td>' + damage.additional_comments + '</td>');
+                            row.append('<td><img src="' + damage.damageImageData + '" alt="Damage Image" width="100"></td>');
+                            row.append('<td><button class="delete-button"><i class="fas fa-trash delete-icon"><center></center></i></button></td>');
+                            tbody.append(row);
+                        }
+                    });
+                }
+            
+                populateDamageTable();
+            
+                tbody.on('click', '.delete-button', function () {
+                    var row = $(this).closest('tr');
+                    deleteRow(row);
+                });
+            
+                function deleteRow(row) {
+                    var index = row.index();
+                    damageData.splice(index, 1);
+                    localStorage.setItem('damageData', JSON.stringify(damageData));
+                    row.remove();
+                    alert('Row deleted successfully!');
+                }
+            }
+
+
+            </script>
+
+    </div>
+    
+
+    
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="js\review.js"></script>
+<script src="js\home.js"></script>
+</body>
+
+</html>

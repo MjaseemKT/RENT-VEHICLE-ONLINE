@@ -1,0 +1,99 @@
+
+/* CSS for button color and shape */
+.saveBtn {
+    background-color: #70752c; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+
+
+.addRowBtn {
+    background-color: #be9f77; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+
+.normalbikeSaveBtn {
+    background-color: #70752c; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+
+
+.normalbikeAddRowBtn {
+    background-color: #926840; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+
+
+.normalcarSaveBtn {
+    background-color: #70752c; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+
+
+.normalcarAddRowBtn {
+    background-color: #926840; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.luxurycarSaveBtn {
+    background-color: #70752c; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+
+
+.luxurycarAddRowBtn {
+    background-color: #926840; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+
+
+
+
+
+
